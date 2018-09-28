@@ -1,0 +1,40 @@
+<html>
+	<body style="background-color: black;" class="container">
+		<h1 id="Timer" style="color: #ff5700;">00:00:00</h1>
+	</body>
+	<script>
+		function onTick() {
+			var elapsed = (new Date(2018, 08, 29).getTime() - Date.now()) / 1000;
+			var element = document.getElementById("Timer");
+			if (elapsed < 0)
+			{
+				element.innerHTML = "VANISHED"
+				element.style = "color: red;";
+			}
+			else
+			{
+				var hours = '' + Math.floor(elapsed/3600);
+				var minutes = '' + Math.floor((elapsed - hours*3600)/60);
+				var secs = '' + Math.floor(elapsed - hours*3600 - minutes*60);
+				element.innerHTML = hours.padStart(2, '0') + ':' + minutes.padStart(2, '0') + ':' + secs.padStart(2, '0');
+			}
+		}
+		setInterval(onTick, 100);
+		onTick();
+	</script>
+	<style>
+		h1 {
+			width: 100%; 
+			font-size: 128; 
+			text-align: center;
+		}
+		.container {
+		  height: 100%;
+		  width: 100%;
+		  display: flex;
+		  position: fixed;
+		  align-items: center;
+		  justify-content: center;
+		}
+	</style>
+</html>
